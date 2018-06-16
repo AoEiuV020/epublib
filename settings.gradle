@@ -1,2 +1,2 @@
 rootProject.name = 'epublib'
-include ':epublib-core', ':epublib-tools'
+include ':epublib-core'
