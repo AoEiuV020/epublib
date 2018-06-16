@@ -1,5 +1,7 @@
 # epublib
-Epublib is a java library for reading/writing/manipulating epub files.
+Epublib is a java library for reading/writing/manipulating epub files.  
+
+[![](https://jitpack.io/v/AoEiuV020/epublib.svg)](https://jitpack.io/#AoEiuV020/epublib)  
 
 I consists of 2 parts: a core that reads/writes epub and a collection of tools.
 The tools contain an epub cleanup tool, a tool to create epubs from html files, a tool to create an epub from an uncompress html file.

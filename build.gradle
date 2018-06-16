@@ -1,0 +1,36 @@
+buildscript {
+    ext {
+        slf4j_version = '1.7.25'
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+    repositories {
+        jcenter()
+    }
+    
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        javadoc.failOnError false
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+    
+    artifacts {
+        archives sourcesJar
+        archives javadocJar
+    }
+}
+
+allprojects {
+    version = "3.1"
+}
