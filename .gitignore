@@ -35,6 +35,7 @@ buildNumber.properties
 bin/
 tmp/
 out/
+*.iml
 
 # Android Studio
 /local.properties

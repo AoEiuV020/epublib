@@ -1,15 +1,15 @@
 package nl.siegmann.epublib.epub;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import nl.siegmann.epublib.util.StringUtil;
-
+import org.w3c.dom.CharacterData;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import nl.siegmann.epublib.util.StringUtil;
 
 /**
  * Utility methods for working with the DOM.
@@ -95,7 +95,7 @@ class DOMUtil {
 	}
 
 	/**
-	 * The contents of all Text nodes that are children of the given parentElement.
+	 * The contents of all Text nodes(include cdata) that are children of the given parentElement.
 	 * The result is trim()-ed.
 	 * 
 	 * The reason for this more complicated procedure instead of just returning the data of the firstChild is that
@@ -113,11 +113,9 @@ class DOMUtil {
 		NodeList childNodes = parentElement.getChildNodes();
 		for (int i = 0; i < childNodes.getLength(); i++) {
 			Node node = childNodes.item(i);
-			if ((node == null) ||
-					(node.getNodeType() != Node.TEXT_NODE)) {
-				continue;
+			if (node instanceof CharacterData) {
+				result.append(((CharacterData) node).getData());
 			}
-			result.append(((Text) node).getData());
 		}
 		return result.toString().trim();
 	}
