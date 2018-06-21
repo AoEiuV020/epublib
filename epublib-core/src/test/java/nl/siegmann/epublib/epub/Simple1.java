@@ -1,5 +1,7 @@
 package nl.siegmann.epublib.epub;
 
+import org.junit.Test;
+
 import java.io.FileOutputStream;
 
 import nl.siegmann.epublib.domain.Author;
@@ -8,6 +10,11 @@ import nl.siegmann.epublib.domain.Resource;
 import nl.siegmann.epublib.domain.TOCReference;
 
 public class Simple1 {
+    @Test
+    public void main() {
+        Simple1.main(new String[0]);
+    }
+
     public static void main(String[] args) {
         try {
             // Create new Book
@@ -48,5 +55,5 @@ public class Simple1 {
         } catch (Exception e) {
             e.printStackTrace();
         }
-	}
+    }
 }

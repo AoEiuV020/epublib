@@ -2,6 +2,7 @@ package nl.siegmann.epublib.epub;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -102,8 +103,12 @@ public class PackageDocumentReader extends PackageDocumentBase {
 			String id = DOMUtil.getAttribute(itemElement, NAMESPACE_OPF, OPFAttributes.id);
 			String href = DOMUtil.getAttribute(itemElement, NAMESPACE_OPF, OPFAttributes.href);
 			try {
+				// resolve by URL to support relative path such as "OEBPS/../text/chapter1.html"
+				URL url = new URL("jar:file:/epub.file!/");
+				URL itemUrl = new URL(url, href);
+				href = itemUrl.toExternalForm().substring(url.toExternalForm().length());
 				href = URLDecoder.decode(href, Constants.CHARACTER_ENCODING);
-			} catch (UnsupportedEncodingException e) {
+			} catch (Exception e) {
 				log.error(e.getMessage());
 			}
 			String mediaTypeName = DOMUtil.getAttribute(itemElement, NAMESPACE_OPF, OPFAttributes.media_type);
