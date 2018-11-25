@@ -1,12 +1,14 @@
 package nl.siegmann.epublib.epub;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.xmlpull.v1.XmlSerializer;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import javax.xml.stream.XMLStreamException;
 
 import nl.siegmann.epublib.Constants;
 import nl.siegmann.epublib.domain.Book;
@@ -17,10 +19,6 @@ import nl.siegmann.epublib.domain.Spine;
 import nl.siegmann.epublib.domain.SpineReference;
 import nl.siegmann.epublib.service.MediatypeService;
 import nl.siegmann.epublib.util.StringUtil;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.xmlpull.v1.XmlSerializer;
 
 
 /**
@@ -67,7 +65,6 @@ public class PackageDocumentWriter extends PackageDocumentBase {
 	 * @throws IOException 
 	 * @throws IllegalStateException 
 	 * @throws IllegalArgumentException 
-	 * @throws XMLStreamException
 	 */
 	private static void writeSpine(Book book, EpubWriter epubWriter, XmlSerializer serializer) throws IllegalArgumentException, IllegalStateException, IOException {
 		serializer.startTag(NAMESPACE_OPF, OPFTags.spine);
@@ -123,7 +120,6 @@ public class PackageDocumentWriter extends PackageDocumentBase {
 	 * @throws IOException 
 	 * @throws IllegalStateException 
 	 * @throws IllegalArgumentException 
-	 * @throws XMLStreamException
 	 */
 	private static void writeItem(Book book, Resource resource, XmlSerializer serializer) throws IllegalArgumentException, IllegalStateException, IOException {
 		if(resource == null ||
